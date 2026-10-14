@@ -1,0 +1,36 @@
+T18_ukol-02 – seznam detekovaných chyb
+Tým T18
+
+C1 – Celočíselné dělení v průměru
+Projev: Výraz suma / znamky.length dělí dvě celá čísla. Pro [1,2,2] vrací 1 místo 1,6667 a slovní hodnocení je výborně místo chvalitebně. Test obeStranyHranice chybu zachytí u všech čtyř hranic.
+Oprava: Součet se dělí jako (double) suma / znamky.length. Součet má navíc typ long.
+
+C2 – Nekonzistentní horní hranice 3,5
+Projev: U 1,5, 2,5 a 4,5 kód používá <=, ale u 3,5 jen <. Při jednotné konvenci půlek má [3,4] znamenat dobře. Tuto chybu původně zakrývalo celočíselné dělení. Po samostatné opravě dělení ze čtyř testů půlek selhal právě případ 3,5.
+Oprava: Horní hranice jsou sjednoceny na <=. Volba půlek vychází z většiny větví dodané implementace, nejde o obecné školské pravidlo.
+
+C3 – Zahrnutá dolní mez otevřeného intervalu
+Projev: Podmínka odkud <= value přijímá hodnotu přesně na dolní mezi. Pro interval(0,10,0) vrací true, zadání vyžaduje false. Test interval s hodnotou 0 chybu zachytí.
+Oprava: Dolní porovnání je změněno na odkud < value. Horní value < kam zůstává beze změny.
+
+C4 – Podhodnocená velikost pole vzorků
+Projev: Počet N = (int)((kam-odkud)/krok) se zaokrouhluje dolů, ale cyklus generuje i poslední vzorek nad dolní mezí. Pro (5,0,2) je N=2, přitom jsou potřeba hodnoty 5,3,1. Pro krok větší než rozsah vznikne pole délky 0, ale cyklus zapisuje první hodnotu. Výsledkem je ArrayIndexOutOfBoundsException.
+Oprava: Počet je ceil((kam-odkud)/krok). Pole se plní pomocí for omezeného vypočtenou délkou.
+
+C5 – Zaokrouhlování při desetinném vzorkování
+Projev: Pro (0.3,0,0.1) může podíl double vyjít těsně pod 3 a opakované odčítání nevytvoří přesné desetinné členy. Dodaný kód v testu zapisuje třetí člen do pole délky 2.
+Oprava: Počet i členy se počítají přes BigDecimal.valueOf a každá hodnota se odvozuje od začátku. Výstup zůstává double[]. Testy používají toleranci 1e-12.
+
+C6 – Neošetřené prázdné a neplatné známky
+Projev: Prázdné pole vyvolá náhodnou ArithmeticException při dělení nulou. Známky mimo 1 až 5 jsou přijaty a dostanou slovní hodnocení. Testy prazdnePole a neplatneZnamky selhávají.
+Oprava: Doplněna kontrola prázdného pole a rozsahu známek s IllegalArgumentException. Null zůstává chybou NullPointerException, nyní s výslovnou kontrolou. Typy chyb jsou součástí doplněného kontraktu.
+
+C7 – Neověřené vstupy generátoru vzorků
+Projev: Nulový, záporný či nekonečný krok a nekonečné meze nejsou odmítnuty. Obrácené meze vedou k NegativeArraySizeException. Při některých hodnotách hrozí obří alokace. Bezpečné testy neplatnyKrok a nekonecneMeze používají shodné meze a prokážou chybějící validaci bez nebezpečné alokace.
+Oprava: Před výpočtem se ověřují konečné meze, kam >= odkud a krok > 0. Neplatné vstupy mají IllegalArgumentException. Limit milionu vzorků a kontrola rozlišení double jsou navíc ochranná vylepšení, nikoli samostatně prokázané chyby z logu.
+
+ÚPRAVY TESTŮ PO ZPŘÍSTUPNĚNÍ IMPLEMENTACE
+V první fázi byly půlky zaokrouhleny k horší známce a vzorky směřovaly od druhého parametru k prvnímu. Nový kód však začíná v kam a končí nad odkud a většinou zahrnuje půlky do lepší známky. Opravené testy přebírají tyto konzistentní konvence. Nejde o chyby samotných komparačních funkcí. ZpracovaniMoje a jeho 28 testů zůstávají funkční.
+
+VÝSLEDKY
+Stejných 65 testů: před opravou 52 úspěšných, 13 neúspěšných; po opravě 65 úspěšných, 0 neúspěšných. 13 selhání neznamená 13 různých chyb; jeden problém může způsobit více neúspěšných případů.

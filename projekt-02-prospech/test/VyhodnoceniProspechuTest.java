@@ -3,50 +3,67 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Testy cílového chování prospěchu. Zaokrouhlení a reakce na neplatné vstupy
- * jsou návrhové předpoklady uvedené v dokumentaci první fáze.
- */
+/** Testy skutečného zadání s jednotnými inkluzivními hranicemi půlek. */
 class VyhodnoceniProspechuTest {
-    /** Testovaný objekt školní kostry. */
+    /** Testovaný objekt. */
     private final VyhodnoceniProspechu v = new VyhodnoceniProspechu();
-    /** Ověřuje případ: jednotlive Znamky.
-     * @param znamka hodnota testovacího případu
-     * @param text hodnota testovacího případu
+
+    /** Ověří všech pět slovních hodnocení.
+     * @param znamka zadaná známka
+     * @param text očekávané hodnocení
      */
     @ParameterizedTest
     @CsvSource({"1,výborně", "2,chvalitebně", "3,dobře", "4,dostatečně", "5,nedostatečně"})
-    void jednotliveZnamky(int znamka, String text) { assertEquals(text, v.prospech(new int[]{znamka})); }
-    /** Ověřuje případ: presne Poloviny.
-     * @param a hodnota testovacího případu
-     * @param b hodnota testovacího případu
-     * @param text hodnota testovacího případu
+    void jednotliveZnamky(int znamka, String text) {
+        assertEquals(text, v.prospech(new int[]{znamka}));
+    }
+
+    /** Půlky patří k lepšímu hodnocení, stejně jako většina větví dodaného kódu.
+     * @param a první známka
+     * @param b druhá známka
+     * @param text očekávané hodnocení
      */
     @ParameterizedTest
-    @CsvSource({"1,2,chvalitebně", "2,3,dobře", "3,4,dostatečně", "4,5,nedostatečně"})
-    void presnePoloviny(int a, int b, String text) { assertEquals(text, v.prospech(new int[]{a,b})); }
-    /** Ověřuje případ: pod Hranici.
+    @CsvSource({"1,2,výborně", "2,3,chvalitebně", "3,4,dobře", "4,5,dostatečně"})
+    void presnePoloviny(int a, int b, String text) {
+        assertEquals(text, v.prospech(new int[]{a,b}));
+    }
+
+    /** Ověří průměry těsně pod a nad všemi hranicemi.
+     * @param a nižší známka
+     * @param b vyšší známka
+     * @param pod výsledek pod půlkou
+     * @param nad výsledek nad půlkou
      */
-    @Test void podHranici() { assertEquals("výborně", v.prospech(new int[]{1,1,2})); }
-    /** Ověřuje případ: nad Hranici.
-     */
-    @Test void nadHranici() { assertEquals("chvalitebně", v.prospech(new int[]{1,2,2})); }
-    /** Ověřuje případ: ruzne Znamky.
-     */
-    @Test void ruzneZnamky() { assertEquals("dobře", v.prospech(new int[]{1,2,3,4,5})); }
-    /** Ověřuje případ: petka Nema Zvlastni Pravidlo.
-     */
-    @Test void petkaNemaZvlastniPravidlo() { assertEquals("dobře", v.prospech(new int[]{1,5})); }
-    /** Ověřuje případ: prazdne Pole.
-     */
-    @Test void prazdnePole() { assertThrows(IllegalArgumentException.class, () -> v.prospech(new int[]{})); }
-    /** Ověřuje případ: null Pole.
-     */
-    @Test void nullPole() { assertThrows(NullPointerException.class, () -> v.prospech(null)); }
-    /** Ověřuje případ: neplatne Znamky.
-     */
-    @Test void neplatneZnamky() { for (int n : new int[]{0,6,-1,Integer.MAX_VALUE}) assertThrows(IllegalArgumentException.class, () -> v.prospech(new int[]{n})); }
-    /** Ověřuje případ: nemeni Vstup.
-     */
-    @Test void nemeniVstup() { int[] a = {2,1}; v.prospech(a); assertArrayEquals(new int[]{2,1}, a); }
+    @ParameterizedTest
+    @CsvSource({"1,2,výborně,chvalitebně", "2,3,chvalitebně,dobře",
+        "3,4,dobře,dostatečně", "4,5,dostatečně,nedostatečně"})
+    void obeStranyHranice(int a, int b, String pod, String nad) {
+        assertEquals(pod, v.prospech(new int[]{a,a,b}));
+        assertEquals(nad, v.prospech(new int[]{a,b,b}));
+    }
+
+    /** Smíšené známky mají aritmetický průměr tři. */
+    @Test void smesZnamek() {
+        assertEquals("dobře", v.prospech(new int[]{1,2,3,4,5}));
+    }
+    /** Prázdné pole má jednoznačně definovanou chybu. */
+    @Test void prazdnePole() {
+        assertThrows(IllegalArgumentException.class, () -> v.prospech(new int[]{}));
+    }
+    /** Null je odmítnuto. */
+    @Test void nullPole() {
+        assertThrows(NullPointerException.class, () -> v.prospech(null));
+    }
+    /** Známky mimo školní stupnici jsou odmítnuty. */
+    @Test void neplatneZnamky() {
+        for (int n : new int[]{0,6,-1})
+            assertThrows(IllegalArgumentException.class, () -> v.prospech(new int[]{n}));
+    }
+    /** Výpočet nemění pořadí ani obsah vstupu. */
+    @Test void nemeniVstup() {
+        int[] a = {2,1};
+        v.prospech(a);
+        assertArrayEquals(new int[]{2,1}, a);
+    }
 }

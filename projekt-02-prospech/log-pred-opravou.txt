@@ -1,0 +1,259 @@
+T18_ukol-02 | Java 17 | JUnit Console 1.10.2 / Jupiter 5.10.2
+Stejná sada opravených testovacích tříd, původní dodaná implementace.
+Příkaz: java -Xmx128m -jar junit-platform-console-standalone-1.10.2.jar execute --class-path <zdroje>:<testy> --scan-class-path --disable-ansi-colors
+Návratový kód: 1 (neúspěšné testy)
+
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+╷
+├─ JUnit Jupiter ✔
+│  ├─ VyhodnoceniProspechuTest ✔
+│  │  ├─ nullPole() ✔
+│  │  ├─ presnePoloviny(int, int, String) ✔
+│  │  │  ├─ [1] 1, 2, výborně ✔
+│  │  │  ├─ [2] 2, 3, chvalitebně ✔
+│  │  │  ├─ [3] 3, 4, dobře ✔
+│  │  │  └─ [4] 4, 5, dostatečně ✔
+│  │  ├─ jednotliveZnamky(int, String) ✔
+│  │  │  ├─ [1] 1, výborně ✔
+│  │  │  ├─ [2] 2, chvalitebně ✔
+│  │  │  ├─ [3] 3, dobře ✔
+│  │  │  ├─ [4] 4, dostatečně ✔
+│  │  │  └─ [5] 5, nedostatečně ✔
+│  │  ├─ nemeniVstup() ✔
+│  │  ├─ prazdnePole() ✘ Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.ArithmeticException>
+│  │  ├─ neplatneZnamky() ✘ Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+│  │  ├─ smesZnamek() ✔
+│  │  └─ obeStranyHranice(int, int, String, String) ✔
+│  │     ├─ [1] 1, 2, výborně, chvalitebně ✘ expected: <chvalitebně> but was: <výborně>
+│  │     ├─ [2] 2, 3, chvalitebně, dobře ✘ expected: <dobře> but was: <chvalitebně>
+│  │     ├─ [3] 3, 4, dobře, dostatečně ✘ expected: <dostatečně> but was: <dobře>
+│  │     └─ [4] 4, 5, dostatečně, nedostatečně ✘ expected: <nedostatečně> but was: <dostatečně>
+│  ├─ ZpracovaniTest ✔
+│  │  ├─ stejneMeze() ✔
+│  │  ├─ neplatnyKrok() ✘ Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+│  │  ├─ nekonecneMeze() ✘ Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+│  │  ├─ zaporneMeze() ✔
+│  │  ├─ krajniInt() ✔
+│  │  ├─ desetinneKroky() ✘ Index 2 out of bounds for length 2
+│  │  ├─ obraceneMeze() ✘ Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.NegativeArraySizeException>
+│  │  ├─ interval(int, int, int, boolean) ✔
+│  │  │  ├─ [1] 0, 10, -1, false ✔
+│  │  │  ├─ [2] 0, 10, 0, false ✘ expected: <false> but was: <true>
+│  │  │  ├─ [3] 0, 10, 1, true ✔
+│  │  │  ├─ [4] 0, 10, 9, true ✔
+│  │  │  ├─ [5] 0, 10, 10, false ✔
+│  │  │  ├─ [6] 0, 10, 11, false ✔
+│  │  │  ├─ [7] 10, 0, 5, false ✔
+│  │  │  ├─ [8] 2, 2, 2, false ✔
+│  │  │  └─ [9] -10, -2, -5, true ✔
+│  │  ├─ nedelitelnyRozsah() ✘ Index 2 out of bounds for length 2
+│  │  ├─ celeKroky() ✔
+│  │  └─ velkyKrok() ✘ Index 0 out of bounds for length 0
+│  └─ ZpracovaniMojeTest ✔
+│     ├─ shodaObsahu() ✔
+│     ├─ nullRetezce() ✔
+│     ├─ prazdneRetezce() ✔
+│     ├─ retezceAntisymetrieATranzitivita() ✔
+│     ├─ cisla(int, int, int) ✔
+│     │  ├─ [1] -5, 5, -1 ✔
+│     │  ├─ [2] 2, 5, -1 ✔
+│     │  ├─ [3] -7, 5, -1 ✔
+│     │  ├─ [4] -2, 5, -1 ✔
+│     │  ├─ [5] 5, -5, 1 ✔
+│     │  ├─ [6] 5, 2, 1 ✔
+│     │  ├─ [7] 5, -7, 1 ✔
+│     │  ├─ [8] 5, -2, 1 ✔
+│     │  ├─ [9] 5, 5, 0 ✔
+│     │  ├─ [10] 0, 0, 0 ✔
+│     │  ├─ [11] -5, -5, 0 ✔
+│     │  ├─ [12] 4, 5, -1 ✔
+│     │  ├─ [13] 6, 5, 1 ✔
+│     │  ├─ [14] -6, -5, -1 ✔
+│     │  ├─ [15] -4, -5, 1 ✔
+│     │  ├─ [16] -2147483648, 2147483647, -1 ✔
+│     │  └─ [17] 2147483647, -2147483648, 1 ✔
+│     ├─ antisymetrieATranzitivita() ✔
+│     └─ retezce(String, String, int) ✔
+│        ├─ [1] abc, abd, -1 ✔
+│        ├─ [2] abd, abc, 1 ✔
+│        ├─ [3] abc, abc, 0 ✔
+│        ├─ [4] a, ab, -1 ✔
+│        ├─ [5] A, a, -1 ✔
+│        └─ [6] z, a, 1 ✔
+├─ JUnit Vintage ✔
+└─ JUnit Platform Suite ✔
+
+Failures (13):
+  JUnit Jupiter:VyhodnoceniProspechuTest:prazdnePole()
+    MethodSource [className = 'VyhodnoceniProspechuTest', methodName = 'prazdnePole', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.ArithmeticException>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+       org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+       VyhodnoceniProspechuTest.prazdnePole(VyhodnoceniProspechuTest.java:52)
+       [...]
+     Caused by: java.lang.ArithmeticException: / by zero
+       VyhodnoceniProspechu.prumer(VyhodnoceniProspechu.java:36)
+       VyhodnoceniProspechu.prospech(VyhodnoceniProspechu.java:7)
+       VyhodnoceniProspechuTest.lambda$prazdnePole$0(VyhodnoceniProspechuTest.java:52)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+       [...]
+  JUnit Jupiter:VyhodnoceniProspechuTest:neplatneZnamky()
+    MethodSource [className = 'VyhodnoceniProspechuTest', methodName = 'neplatneZnamky', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+       org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+       VyhodnoceniProspechuTest.neplatneZnamky(VyhodnoceniProspechuTest.java:61)
+       java.base/java.lang.reflect.Method.invoke(Method.java:569)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+  JUnit Jupiter:VyhodnoceniProspechuTest:obeStranyHranice(int, int, String, String):[1] 1, 2, výborně, chvalitebně
+    MethodSource [className = 'VyhodnoceniProspechuTest', methodName = 'obeStranyHranice', methodParameterTypes = 'int, int, java.lang.String, java.lang.String']
+    => org.opentest4j.AssertionFailedError: expected: <chvalitebně> but was: <výborně>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+       VyhodnoceniProspechuTest.obeStranyHranice(VyhodnoceniProspechuTest.java:43)
+       java.base/java.lang.reflect.Method.invoke(Method.java:569)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:VyhodnoceniProspechuTest:obeStranyHranice(int, int, String, String):[2] 2, 3, chvalitebně, dobře
+    MethodSource [className = 'VyhodnoceniProspechuTest', methodName = 'obeStranyHranice', methodParameterTypes = 'int, int, java.lang.String, java.lang.String']
+    => org.opentest4j.AssertionFailedError: expected: <dobře> but was: <chvalitebně>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+       VyhodnoceniProspechuTest.obeStranyHranice(VyhodnoceniProspechuTest.java:43)
+       java.base/java.lang.reflect.Method.invoke(Method.java:569)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:VyhodnoceniProspechuTest:obeStranyHranice(int, int, String, String):[3] 3, 4, dobře, dostatečně
+    MethodSource [className = 'VyhodnoceniProspechuTest', methodName = 'obeStranyHranice', methodParameterTypes = 'int, int, java.lang.String, java.lang.String']
+    => org.opentest4j.AssertionFailedError: expected: <dostatečně> but was: <dobře>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+       VyhodnoceniProspechuTest.obeStranyHranice(VyhodnoceniProspechuTest.java:43)
+       java.base/java.lang.reflect.Method.invoke(Method.java:569)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:VyhodnoceniProspechuTest:obeStranyHranice(int, int, String, String):[4] 4, 5, dostatečně, nedostatečně
+    MethodSource [className = 'VyhodnoceniProspechuTest', methodName = 'obeStranyHranice', methodParameterTypes = 'int, int, java.lang.String, java.lang.String']
+    => org.opentest4j.AssertionFailedError: expected: <nedostatečně> but was: <dostatečně>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+       VyhodnoceniProspechuTest.obeStranyHranice(VyhodnoceniProspechuTest.java:43)
+       java.base/java.lang.reflect.Method.invoke(Method.java:569)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:ZpracovaniTest:neplatnyKrok()
+    MethodSource [className = 'ZpracovaniTest', methodName = 'neplatnyKrok', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+       org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+       ZpracovaniTest.neplatnyKrok(ZpracovaniTest.java:58)
+       java.base/java.lang.reflect.Method.invoke(Method.java:569)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+  JUnit Jupiter:ZpracovaniTest:nekonecneMeze()
+    MethodSource [className = 'ZpracovaniTest', methodName = 'nekonecneMeze', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+       org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+       ZpracovaniTest.nekonecneMeze(ZpracovaniTest.java:63)
+       java.base/java.lang.reflect.Method.invoke(Method.java:569)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+  JUnit Jupiter:ZpracovaniTest:desetinneKroky()
+    MethodSource [className = 'ZpracovaniTest', methodName = 'desetinneKroky', methodParameterTypes = '']
+    => java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
+       Zpracovani.vzorkySestupně(Zpracovani.java:16)
+       ZpracovaniTest.desetinneKroky(ZpracovaniTest.java:37)
+       java.base/java.lang.reflect.Method.invoke(Method.java:569)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+  JUnit Jupiter:ZpracovaniTest:obraceneMeze()
+    MethodSource [className = 'ZpracovaniTest', methodName = 'obraceneMeze', methodParameterTypes = '']
+    => org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.NegativeArraySizeException>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+       org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3115)
+       ZpracovaniTest.obraceneMeze(ZpracovaniTest.java:53)
+       [...]
+     Caused by: java.lang.NegativeArraySizeException: -4
+       Zpracovani.vzorkySestupně(Zpracovani.java:12)
+       ZpracovaniTest.lambda$obraceneMeze$0(ZpracovaniTest.java:53)
+       org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+       [...]
+  JUnit Jupiter:ZpracovaniTest:interval(int, int, int, boolean):[2] 0, 10, 0, false
+    MethodSource [className = 'ZpracovaniTest', methodName = 'interval', methodParameterTypes = 'int, int, int, boolean']
+    => org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+       org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+       org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+       org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+       org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+       org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+       ZpracovaniTest.interval(ZpracovaniTest.java:21)
+       java.base/java.lang.reflect.Method.invoke(Method.java:569)
+       java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+       java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+       [...]
+  JUnit Jupiter:ZpracovaniTest:nedelitelnyRozsah()
+    MethodSource [className = 'ZpracovaniTest', methodName = 'nedelitelnyRozsah', methodParameterTypes = '']
+    => java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
+       Zpracovani.vzorkySestupně(Zpracovani.java:16)
+       ZpracovaniTest.nedelitelnyRozsah(ZpracovaniTest.java:33)
+       java.base/java.lang.reflect.Method.invoke(Method.java:569)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+  JUnit Jupiter:ZpracovaniTest:velkyKrok()
+    MethodSource [className = 'ZpracovaniTest', methodName = 'velkyKrok', methodParameterTypes = '']
+    => java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
+       Zpracovani.vzorkySestupně(Zpracovani.java:16)
+       ZpracovaniTest.velkyKrok(ZpracovaniTest.java:49)
+       java.base/java.lang.reflect.Method.invoke(Method.java:569)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+       java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+Test run finished after 273 ms
+[        12 containers found      ]
+[         0 containers skipped    ]
+[        12 containers started    ]
+[         0 containers aborted    ]
+[        12 containers successful ]
+[         0 containers failed     ]
+[        65 tests found           ]
+[         0 tests skipped         ]
+[        65 tests started         ]
+[         0 tests aborted         ]
+[        52 tests successful      ]
+[        13 tests failed          ]
+

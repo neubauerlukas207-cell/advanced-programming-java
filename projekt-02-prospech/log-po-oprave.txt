@@ -1,0 +1,101 @@
+T18_ukol-02 | Java 17 | JUnit Console 1.10.2 / Jupiter 5.10.2
+Stejná sada opravených testovacích tříd, opravená implementace.
+Příkaz: java -Xmx128m -jar junit-platform-console-standalone-1.10.2.jar execute --class-path <zdroje>:<testy> --scan-class-path --disable-ansi-colors
+Návratový kód: 0 (všechny testy prošly)
+
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+╷
+├─ JUnit Jupiter ✔
+│  ├─ VyhodnoceniProspechuTest ✔
+│  │  ├─ nullPole() ✔
+│  │  ├─ presnePoloviny(int, int, String) ✔
+│  │  │  ├─ [1] 1, 2, výborně ✔
+│  │  │  ├─ [2] 2, 3, chvalitebně ✔
+│  │  │  ├─ [3] 3, 4, dobře ✔
+│  │  │  └─ [4] 4, 5, dostatečně ✔
+│  │  ├─ jednotliveZnamky(int, String) ✔
+│  │  │  ├─ [1] 1, výborně ✔
+│  │  │  ├─ [2] 2, chvalitebně ✔
+│  │  │  ├─ [3] 3, dobře ✔
+│  │  │  ├─ [4] 4, dostatečně ✔
+│  │  │  └─ [5] 5, nedostatečně ✔
+│  │  ├─ nemeniVstup() ✔
+│  │  ├─ prazdnePole() ✔
+│  │  ├─ neplatneZnamky() ✔
+│  │  ├─ smesZnamek() ✔
+│  │  └─ obeStranyHranice(int, int, String, String) ✔
+│  │     ├─ [1] 1, 2, výborně, chvalitebně ✔
+│  │     ├─ [2] 2, 3, chvalitebně, dobře ✔
+│  │     ├─ [3] 3, 4, dobře, dostatečně ✔
+│  │     └─ [4] 4, 5, dostatečně, nedostatečně ✔
+│  ├─ ZpracovaniTest ✔
+│  │  ├─ stejneMeze() ✔
+│  │  ├─ neplatnyKrok() ✔
+│  │  ├─ nekonecneMeze() ✔
+│  │  ├─ zaporneMeze() ✔
+│  │  ├─ krajniInt() ✔
+│  │  ├─ desetinneKroky() ✔
+│  │  ├─ obraceneMeze() ✔
+│  │  ├─ interval(int, int, int, boolean) ✔
+│  │  │  ├─ [1] 0, 10, -1, false ✔
+│  │  │  ├─ [2] 0, 10, 0, false ✔
+│  │  │  ├─ [3] 0, 10, 1, true ✔
+│  │  │  ├─ [4] 0, 10, 9, true ✔
+│  │  │  ├─ [5] 0, 10, 10, false ✔
+│  │  │  ├─ [6] 0, 10, 11, false ✔
+│  │  │  ├─ [7] 10, 0, 5, false ✔
+│  │  │  ├─ [8] 2, 2, 2, false ✔
+│  │  │  └─ [9] -10, -2, -5, true ✔
+│  │  ├─ nedelitelnyRozsah() ✔
+│  │  ├─ celeKroky() ✔
+│  │  └─ velkyKrok() ✔
+│  └─ ZpracovaniMojeTest ✔
+│     ├─ shodaObsahu() ✔
+│     ├─ nullRetezce() ✔
+│     ├─ prazdneRetezce() ✔
+│     ├─ retezceAntisymetrieATranzitivita() ✔
+│     ├─ cisla(int, int, int) ✔
+│     │  ├─ [1] -5, 5, -1 ✔
+│     │  ├─ [2] 2, 5, -1 ✔
+│     │  ├─ [3] -7, 5, -1 ✔
+│     │  ├─ [4] -2, 5, -1 ✔
+│     │  ├─ [5] 5, -5, 1 ✔
+│     │  ├─ [6] 5, 2, 1 ✔
+│     │  ├─ [7] 5, -7, 1 ✔
+│     │  ├─ [8] 5, -2, 1 ✔
+│     │  ├─ [9] 5, 5, 0 ✔
+│     │  ├─ [10] 0, 0, 0 ✔
+│     │  ├─ [11] -5, -5, 0 ✔
+│     │  ├─ [12] 4, 5, -1 ✔
+│     │  ├─ [13] 6, 5, 1 ✔
+│     │  ├─ [14] -6, -5, -1 ✔
+│     │  ├─ [15] -4, -5, 1 ✔
+│     │  ├─ [16] -2147483648, 2147483647, -1 ✔
+│     │  └─ [17] 2147483647, -2147483648, 1 ✔
+│     ├─ antisymetrieATranzitivita() ✔
+│     └─ retezce(String, String, int) ✔
+│        ├─ [1] abc, abd, -1 ✔
+│        ├─ [2] abd, abc, 1 ✔
+│        ├─ [3] abc, abc, 0 ✔
+│        ├─ [4] a, ab, -1 ✔
+│        ├─ [5] A, a, -1 ✔
+│        └─ [6] z, a, 1 ✔
+├─ JUnit Vintage ✔
+└─ JUnit Platform Suite ✔
+
+Test run finished after 324 ms
+[        12 containers found      ]
+[         0 containers skipped    ]
+[        12 containers started    ]
+[         0 containers aborted    ]
+[        12 containers successful ]
+[         0 containers failed     ]
+[        65 tests found           ]
+[         0 tests skipped         ]
+[        65 tests started         ]
+[         0 tests aborted         ]
+[        65 tests successful      ]
+[         0 tests failed          ]
+
